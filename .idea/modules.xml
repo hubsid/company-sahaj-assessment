@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Project/Project.iml" filepath="$PROJECT_DIR$/Project/Project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sahaj-coding-assessment.iml" filepath="$PROJECT_DIR$/sahaj-coding-assessment.iml" />
     </modules>
   </component>
 </project>
