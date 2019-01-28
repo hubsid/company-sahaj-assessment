@@ -21,6 +21,14 @@ public class StockResult extends Stock {
         return finalQuantity;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setFinalQuantity(int finalQuantity) {
+        this.finalQuantity = finalQuantity;
+    }
+
     @Override
     public String toString() {
         String superString = super.toString();

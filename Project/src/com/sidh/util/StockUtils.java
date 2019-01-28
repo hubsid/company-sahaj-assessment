@@ -2,6 +2,9 @@ package com.sidh.util;
 
 import com.sidh.config.Config;
 import com.sidh.model.Stock;
+import com.sidh.model.StockResult;
+
+import java.util.List;
 
 public class StockUtils {
     public static Stock stockFromString(String inputString) throws Exception {
@@ -36,5 +39,40 @@ public class StockUtils {
             throw new Exception("stockId and quantity should be positive");
 
         return new Stock(stockId, side, company, quantity);
+    }
+
+    public static boolean areOpposites(Stock stock1, Stock stock2) {
+        return stock1.getSide() != stock2.getSide();
+    }
+
+    public static void performOrder(StockResult stock1, StockResult stock2) {
+        StockResult temp1, temp2;
+
+        if(stock1.getFinalQuantity() > stock2.getFinalQuantity()) {
+            temp1 = stock1;
+            temp2 = stock2;
+        }
+        else {
+            temp1 = stock2;
+            temp2 = stock1;
+        }
+        temp1.setFinalQuantity(temp1.getFinalQuantity() - temp2.getFinalQuantity());
+
+        if(temp1.getFinalQuantity() == 0)
+            temp1.setStatus(Stock.Status.CLOSED);
+        temp2.setStatus(Stock.Status.CLOSED);
+    }
+
+    public static void closeAll(List<StockResult> stocks) {
+        stocks.stream().forEach(stock -> {
+            stock.setFinalQuantity(0);
+            stock.setStatus(Stock.Status.CLOSED);
+        });
+    }
+
+    public static void close(List<StockResult> stocks) {
+        stocks.stream().filter(stock ->  stock.getFinalQuantity() == 0).forEach(stock -> {
+            stock.setStatus(Stock.Status.CLOSED);
+        });
     }
 }
