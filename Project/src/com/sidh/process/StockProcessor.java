@@ -17,12 +17,13 @@ public class StockProcessor {
         inputStocks = stocks;
     }
 
-    public void process() {
-        if(inputStocks.isEmpty()) return;
+    public List<StockResult> process() {
+        if (inputStocks.isEmpty()) return outputStocks;
 
         makeOutputStocks();
         splitByCompany();
         processStocks();
+        return outputStocks;
     }
 
     private void processStocks() {
@@ -35,9 +36,9 @@ public class StockProcessor {
                     .collect(Collectors.toList());
 
             List<StockResult> sellStocks = companyStocks.stream()
+                    .filter(stock -> stock.getSide() == Stock.Side.SELL)
                     .sorted(StockCompare::byFinalQuantity)
                     .collect(Collectors.toList());
-
 
             int sumBuyStock = buyStocks.stream().mapToInt(StockResult::getFinalQuantity).sum();
             int sumSellStock = sellStocks.stream().mapToInt(StockResult::getFinalQuantity).sum();
@@ -52,6 +53,7 @@ public class StockProcessor {
                     StockUtils.closeAll(sellStocks);
                 subtract(sellStocks, sumBuyStock);
             }
+
             StockUtils.close(buyStocks);
             StockUtils.close(sellStocks);
         }

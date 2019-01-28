@@ -32,7 +32,7 @@ public class StockResult extends Stock {
     @Override
     public String toString() {
         String superString = super.toString();
-        return superString.substring(0, superString.length()-2)
-                + ", finalQuantity=" + finalQuantity + ", status=" + status + "}";
+        return superString.substring(0, superString.length()-1)
+                + ", finalQuantity=" + finalQuantity + ", status=" + status + "}\n";
     }
 }

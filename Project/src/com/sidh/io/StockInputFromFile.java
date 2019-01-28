@@ -42,7 +42,7 @@ public class StockInputFromFile implements StockInput {
         try {
             return StockUtils.stockFromString(nextLine);
         } catch (Exception e) {
-            Entry.terminate(e.getMessage() + ", at line: " + line);
+            Entry.terminate(e.getMessage() + ", at stock: " + line);
         }
         return null;
     }

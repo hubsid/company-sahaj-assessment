@@ -1,1 +1,10 @@
-3, buy, tcs, 234,
+stockid, side, company, quantity
+1,buy,tcs, 15
+6,buy,wip,5
+2,buy,tcs, 20
+3,sell,tcs,12
+7,sell,wip,6
+4,buy,tcs,7
+8,sell,wip,8
+5,sell,tcs,8
+9,buy,wip,10
