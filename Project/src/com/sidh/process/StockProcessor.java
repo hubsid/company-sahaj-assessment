@@ -52,13 +52,22 @@ public class StockProcessor {
                     StockUtils.closeAll(sellStocks);
                 subtract(sellStocks, sumBuyStock);
             }
+            StockUtils.close(buyStocks);
+            StockUtils.close(sellStocks);
         }
     }
 
     private void subtract(List<StockResult> stocks, int value) {
-        do {
-
-        } while (value > 0);
+        for(StockResult stock:stocks) {
+            if(stock.getFinalQuantity() >= value) {
+                stock.setFinalQuantity(stock.getFinalQuantity() - value);
+                break;
+            }
+            else {
+                value -= stock.getFinalQuantity();
+                stock.setFinalQuantity(0);
+            }
+        }
     }
 
     private void splitByCompany() {

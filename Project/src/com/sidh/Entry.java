@@ -8,6 +8,7 @@ import com.sidh.model.StockCompare;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,13 +25,6 @@ public class Entry {
                 new Stock(2, Stock.Side.BUY, "sister", 23),
                 new Stock(3, Stock.Side.SELL, "", 42)
         ));
-
-        stocks = stocks.stream().sorted((stock1, stock2) -> {
-            return stock1.getQuantity() - stock2.getQuantity();
-        }).collect(Collectors.toList());
-
-        System.out.println(stocks);
-
     }
 
     public static void terminate(String s) {
