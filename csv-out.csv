@@ -1,0 +1,10 @@
+StockId,Side,Company,Quantity,Status
+1,BUY,tcs,"15,2",OPEN
+6,BUY,wip,"5,0",CLOSED
+2,BUY,tcs,"20,20",OPEN
+3,SELL,tcs,"12,0",CLOSED
+7,SELL,wip,"6,0",CLOSED
+4,BUY,tcs,"7,0",CLOSED
+8,SELL,wip,"8,0",CLOSED
+5,SELL,tcs,"8,0",CLOSED
+9,BUY,wip,"10,1",OPEN

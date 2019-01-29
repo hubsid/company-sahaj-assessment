@@ -1,9 +1,12 @@
 package com.sidh;
 
 import com.sidh.io.InputManager;
+import com.sidh.io.OutputManager;
 import com.sidh.io.StockInput;
 import com.sidh.model.Stock;
 import com.sidh.model.StockCompare;
+import com.sidh.model.StockResult;
+import com.sidh.process.StockProcessor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,17 +17,12 @@ import java.util.stream.Collectors;
 
 public class Entry {
     public static void main(String[] args) throws IOException {
-//        List<Stock> stocks = InputManager.getStocks(StockInput.getInstance());
+        List<Stock> stocks = InputManager.getStocks();
 
-//        System.out.println("operation over:stocks are:");
-//        System.out.println(stocks);
+        StockProcessor stockProcessor = new StockProcessor(stocks);
+        List<StockResult> stockResults = stockProcessor.process();
 
-        List<Stock> stocks = new ArrayList<>();
-        stocks.addAll(Arrays.asList(
-                new Stock(1, Stock.Side.BUY, "mother", 56),
-                new Stock(2, Stock.Side.BUY, "sister", 23),
-                new Stock(3, Stock.Side.SELL, "", 42)
-        ));
+        OutputManager.putStocks(stockResults);
     }
 
     public static void terminate(String s) {
