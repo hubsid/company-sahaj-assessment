@@ -5,7 +5,10 @@ import com.sidh.model.StockCompare;
 import com.sidh.model.StockResult;
 import com.sidh.util.StockUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StockProcessor {
@@ -27,7 +30,7 @@ public class StockProcessor {
     }
 
     private void processStocks() {
-        for(String company:splitStocks.keySet()) {
+        for (String company : splitStocks.keySet()) {
             List<StockResult> companyStocks = splitStocks.get(company);
 
             List<StockResult> buyStocks = companyStocks.stream()
@@ -43,13 +46,12 @@ public class StockProcessor {
             int sumBuyStock = buyStocks.stream().mapToInt(StockResult::getFinalQuantity).sum();
             int sumSellStock = sellStocks.stream().mapToInt(StockResult::getFinalQuantity).sum();
 
-            if(sumBuyStock > sumSellStock) {
+            if (sumBuyStock > sumSellStock) {
                 StockUtils.closeAll(sellStocks);
                 subtract(buyStocks, sumSellStock);
-            }
-            else {
+            } else {
                 StockUtils.closeAll(buyStocks);
-                if(sumBuyStock == sumSellStock)
+                if (sumBuyStock == sumSellStock)
                     StockUtils.closeAll(sellStocks);
                 subtract(sellStocks, sumBuyStock);
             }
@@ -60,12 +62,11 @@ public class StockProcessor {
     }
 
     private void subtract(List<StockResult> stocks, int value) {
-        for(StockResult stock:stocks) {
-            if(stock.getFinalQuantity() >= value) {
+        for (StockResult stock : stocks) {
+            if (stock.getFinalQuantity() >= value) {
                 stock.setFinalQuantity(stock.getFinalQuantity() - value);
                 break;
-            }
-            else {
+            } else {
                 value -= stock.getFinalQuantity();
                 stock.setFinalQuantity(0);
             }
@@ -73,21 +74,20 @@ public class StockProcessor {
     }
 
     private void splitByCompany() {
-        for(StockResult stockResult: outputStocks) {
+        for (StockResult stockResult : outputStocks) {
             String company = stockResult.getCompany();
-           if(splitStocks.containsKey(company)) {
+            if (splitStocks.containsKey(company)) {
                 splitStocks.get(company).add(stockResult);
+            } else {
+                List<StockResult> stockResults = new ArrayList<>();
+                stockResults.add(stockResult);
+                splitStocks.put(company, stockResults);
             }
-           else {
-               List<StockResult> stockResults = new ArrayList<>();
-               stockResults.add(stockResult);
-               splitStocks.put(company, stockResults);
-           }
         }
     }
 
     private void makeOutputStocks() {
-        for(Stock stock:inputStocks)
+        for (Stock stock : inputStocks)
             outputStocks.add(new StockResult(stock, stock.getQuantity(), Stock.Status.OPEN));
     }
 }

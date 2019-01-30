@@ -9,7 +9,7 @@ public class StockResult extends Stock {
                 stock.getSide(),
                 stock.getCompany(),
                 stock.getQuantity());
-        this.finalQuantity= finalQuantity;
+        this.finalQuantity = finalQuantity;
         this.status = status;
     }
 
@@ -17,12 +17,12 @@ public class StockResult extends Stock {
         return status;
     }
 
-    public int getFinalQuantity() {
-        return finalQuantity;
-    }
-
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public int getFinalQuantity() {
+        return finalQuantity;
     }
 
     public void setFinalQuantity(int finalQuantity) {
@@ -32,7 +32,7 @@ public class StockResult extends Stock {
     @Override
     public String toString() {
         String superString = super.toString();
-        return superString.substring(0, superString.length()-1)
+        return superString.substring(0, superString.length() - 1)
                 + ", finalQuantity=" + finalQuantity + ", status=" + status + "}\n";
     }
 }

@@ -26,7 +26,7 @@ public class StockInputFromFile implements StockInput {
     public boolean hasNext() {
         try {
             nextLine = reader.readLine();
-            if(nextLine == null || nextLine.equals("")) {
+            if (nextLine == null || nextLine.equals("")) {
                 reader.close();
                 return false;
             }

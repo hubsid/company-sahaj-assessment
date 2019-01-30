@@ -21,10 +21,14 @@ public class InputManager {
 
     public static StockInput getInput() throws IOException {
         switch (Config.INPUT_SOURCE) {
-            case FROM_CMD: return new StockInputFromCmd();
-            case FROM_NETWORK_REQUEST: return new StockInputFromNetwork();
-            case FROM_FILE: return new StockInputFromFile();
-            default: return null;
+            case FROM_CMD:
+                return new StockInputFromCmd();
+            case FROM_NETWORK_REQUEST:
+                return new StockInputFromNetwork();
+            case FROM_FILE:
+                return new StockInputFromFile();
+            default:
+                return null;
         }
     }
 }

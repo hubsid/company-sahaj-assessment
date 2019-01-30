@@ -1,6 +1,5 @@
 package com.sidh.io;
 
-import com.sidh.model.Stock;
 import com.sidh.model.StockResult;
 
 import java.util.List;

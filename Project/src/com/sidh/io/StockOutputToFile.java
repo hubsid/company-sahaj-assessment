@@ -2,15 +2,15 @@ package com.sidh.io;
 
 import com.sidh.config.Config;
 import com.sidh.model.StockResult;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
-import java.io.*;
-import java.nio.Buffer;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class StockOutputToFile implements StockOutput{
+public class StockOutputToFile implements StockOutput {
     public static final String QUOTE = "\"";
     public static final String NEWLINE = "\n";
     Path filePath;
@@ -26,7 +26,7 @@ public class StockOutputToFile implements StockOutput{
         StringBuilder outString = new StringBuilder();
         outString.append("StockId,Side,Company,Quantity,Status\n");
         try {
-            for(StockResult stock:stocks) {
+            for (StockResult stock : stocks) {
                 outString.append(stock.getStockId() + Config.CSV_SEPARATOR +
                         stock.getSide() + Config.CSV_SEPARATOR +
                         stock.getCompany() + Config.CSV_SEPARATOR +
