@@ -6,5 +6,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface StockOutput {
-    public void output(List<StockResult> stocks) throws IOException;
+    void output(List<StockResult> stocks) throws IOException;
 }
