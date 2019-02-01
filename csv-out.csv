@@ -10,4 +10,4 @@ StockId,Side,Company,Quantity,Status
 9,BUY,wip,"10,1",OPEN
 10, SELL,intel, "9,8", CLOSED
 11, BUY, intex, "10,10", OPEN
-12, SELL, TCS, "12, 4", CLOSED
+12, SELL, INTEL, "12, 4", CLOSED
