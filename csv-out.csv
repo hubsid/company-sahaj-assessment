@@ -8,3 +8,4 @@ StockId,Side,Company,Quantity,Status
 8,SELL,wip,"8,0",CLOSED
 5,SELL,tcs,"8,0",CLOSED
 9,BUY,wip,"10,1",OPEN
+10, SELL,intel, "9,8", CLOSED
